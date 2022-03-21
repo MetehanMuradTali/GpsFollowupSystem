@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mainmenu.css')}}">
+    <style>
+        #map{
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body onload="">
+   <div class="row">
+       <div class="column left">
+           <p>Kullanıcı:{{username}}</p>
+           <p>Taksi Seçin:</p>
+           {% for car in cars  %}
+               <button class="users_cars" id='{{car}}'>{{car}}</button>
+           {% endfor %}
+           <p>Tarih Seçin:</p>
+           <input type="datetime-local" id="firstdate" name="firstdate" min="2018-10-01T00:00" max="2018-11-30T23:59" >
+           <input type="datetime-local" id="seconddate" name="seconddate" min="2018-10-01T00:00" max="2018-11-30T23:59" >
+           <button id="Search" value="Search">Arama Yap</button>
+            <label id="hold" style="visibility: hidden"></label>
+           <input type="datetime-local" id="hold2" style="visibility: hidden">
+
+           <form method="post">
+               <button type="submit" name="action" value="Logout">Çıkış Yap</button>
+           </form>
+       </div>
+       <div class="column right">
+               <div id="map">
+               </div>
+       </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='js/mainmenu.js')}}" ></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0JzYWlB71x0I_530sJxPdQRwZGL2CA0I&callback=initMap">
+        </script>
+
+</body>
+</html>
